@@ -1,14 +1,15 @@
+<%-- 
+    Document   : index
+    Created on : 14 oct. 2020, 18:26:25
+    Author     : dario
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
     </head>
     <body>
         <header>
@@ -21,7 +22,7 @@ and open the template in the editor.
                 <input type="email" name="email" placeholder="email@gmail.com" required>
                 <br>
                 <label>Contraseña </label>
-                <input type="text" name="password" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                <input type="text" name="password" required>
                 <input type="submit" name="submLog" value="Aceptar">
             </form>
             

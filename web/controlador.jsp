@@ -4,6 +4,7 @@
     Author     : dario
 --%>
 
+<%@page import="java.util.LinkedList"%>
 <%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.ConexionEstatica"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,10 +18,19 @@
         <%
             if (request.getParameter("submLog")!=null) {
                 ConexionEstatica.nueva();
-                Usuario aux = ConexionEstatica.existeUsuario(request.getParameter("email"));
+                Usuario aux = ConexionEstatica.login(request.getParameter("email"),request.getParameter("password"));
                 
-                if(aux!=null) {
-                    session.sendRedirect("/correcto.jsp");
+                if(aux!=null) {                   
+                    
+                    Boolean hasAdmin = ConexionEstatica.getRol(request.getParameter("email"));
+                                        
+                    ConexionEstatica.cerrarBD();
+                    
+                    if(hasAdmin) {
+                        response.sendRedirect("Vistas/admin.jsp");
+                    } else {                    
+                        response.sendRedirect("Vistas/valido.jsp");
+                    }
                 }
             }
         %>

@@ -74,8 +74,48 @@ public class ConexionEstatica {
         }
         return existe;//Si devolvemos null el usuario no existe.
     }
+    
+    public static Usuario login(String email, String password) {
+        Usuario existe = null;
+        try {
+            String sentencia = "SELECT * FROM usuario WHERE email = '" + email + "' AND password = '" + password +"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            if (ConexionEstatica.Conj_Registros.next())//Si devuelve true es que existe.
+            {
+                existe = new Usuario(Conj_Registros.getString("email"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getInt("edad"), Conj_Registros.getString("genero"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en el acceso a la BD.");
+        }
+        return existe;//Si devolvemos null el usuario no existe.
+    }
 
-  
+    
+    public static boolean getRol(String email) {
+        LinkedList<Usuario> usuariosRol = new LinkedList<>();
+        Usuario aux = null;
+        Boolean hasAdmin = false;
+        try {
+            String sentencia = "SELECT * FROM rolUsuario WHERE emailUsu = '"+ email +"'";
+            String m = email;
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            
+            while(Conj_Registros.next()){
+                aux =new Usuario(Conj_Registros.getString("emailUsu"), Conj_Registros.getInt("idRol"));
+                usuariosRol.add(aux);
+            }
+                                           
+            for(Usuario usu:usuariosRol) {
+                if(usu.getRol()==1) {
+                    hasAdmin = true;
+                }
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error en el acceso a la BD.");
+        }
+        return hasAdmin;
+    }
     
     /**
      * Usando una LinkedList.

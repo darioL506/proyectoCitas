@@ -17,6 +17,7 @@ public class Usuario {
     private String apellido;
     private int edad;
     private String genero;
+    private int rol;
 
     public Usuario(String email, String name, String apellido, int edad, String genero) {
         this.email = email;
@@ -34,6 +35,12 @@ public class Usuario {
         this.edad = edad;
         this.genero = genero;
     }
+
+    public Usuario(String email, int rol) {
+        this.email = email;
+        this.rol = rol;
+    }
+    
 
     public String getEmail() {
         return email;
@@ -82,5 +89,13 @@ public class Usuario {
     public void setGenero(String genero) {
         this.genero = genero;
     }  
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
     
 }

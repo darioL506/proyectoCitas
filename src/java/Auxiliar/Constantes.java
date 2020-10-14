@@ -10,7 +10,7 @@ package Auxiliar;
  * @author fernando
  */
 public class Constantes {
-    public static String BBDD="ejemplo";
+    public static String BBDD="proyectocitas";
     public static String usuario="dario";
     public static String password="Chubaca2020";
     public static String ficheroBitacora="bitacora.txt";
