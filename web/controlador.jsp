@@ -4,6 +4,8 @@
     Author     : dario
 --%>
 
+<%@page import="Modelo.Usuario"%>
+<%@page import="Modelo.ConexionEstatica"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            if (request.getParameter("submLog")!=null) {
+                ConexionEstatica.nueva();
+                Usuario aux = ConexionEstatica.existeUsuario(request.getParameter("email"));
+                
+                if(aux!=null) {
+                    session.sendRedirect("/correcto.jsp");
+                }
+            }
+        %>
     </body>
 </html>

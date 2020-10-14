@@ -11,6 +11,30 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <header>
+            
+        </header>
+        
+        <main>
+            <form name="form1" action="controlador.jsp">
+                <label>Usuario: </label>
+                <input type="email" name="email" placeholder="email@gmail.com" required>
+                <br>
+                <label>Contraseña </label>
+                <input type="text" name="password" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                <input type="submit" name="submLog" value="Aceptar">
+            </form>
+            
+            <form name="form2" action="controlador.jsp">
+                <input type="submit" name="registButton" value="Registrarse">
+            </form>
+            <form name="form3" action="controlador.jsp">
+                <input type="submit" name="recoverPass" value="Recuperar contraseña">
+            </form>
+        </main>
+        
+        <footer>
+            
+        </footer>
     </body>
 </html>
