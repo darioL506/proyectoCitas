@@ -122,20 +122,21 @@ public class ConexionEstatica {
      * @return 
      */
     
-    /*public static LinkedList obtenerPersonas() {
-        LinkedList personasBD = new LinkedList<>();
-        Persona p = null;
+    public static LinkedList obtenerUsuarios() {
+        LinkedList usuarioBD = new LinkedList<>();
+        Usuario usu = null;
         try {
-            String sentencia = "SELECT * FROM personas";
+            String sentencia = "SELECT * FROM usuario";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             while(Conj_Registros.next()){
-                p =new Persona(Conj_Registros.getString("DNI"), Conj_Registros.getString("nombre"), Conj_Registros.getInt("Tfno"));;
-                personasBD.add(p);
+                usu = new Usuario(Conj_Registros.getString("email"), Conj_Registros.getString("password"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getInt("edad"),Conj_Registros.getString("genero"));
+                usuarioBD.add(usu);
             }
         } catch (SQLException ex) {
+            System.out.println("Error en el acceso a la BD.");
         }
-        return personasBD;
-    }*/
+        return usuarioBD;
+    }
     
     /**
      * Usando una tabla Hash.
