@@ -18,6 +18,7 @@ public class Usuario {
     private int edad;
     private String genero;
     private int rol;
+    private boolean activo;
 
     public Usuario(String email, String name, String apellido, int edad, String genero) {
         this.email = email;
@@ -27,13 +28,11 @@ public class Usuario {
         this.genero = genero;
     }
 
-    public Usuario(String email, String password, String name, String apellido, int edad, String genero) {
+    public Usuario(String email, String name, String apellido, boolean activo) {
         this.email = email;
-        this.password = password;
         this.name = name;
         this.apellido = apellido;
-        this.edad = edad;
-        this.genero = genero;
+        this.activo = activo;
     }
 
     public Usuario(String email, int rol) {
@@ -97,5 +96,9 @@ public class Usuario {
     public void setRol(int rol) {
         this.rol = rol;
     }
-    
+
+    public boolean isActivo() {
+        return activo;
+    }
+
 }

@@ -27,7 +27,7 @@
                                 <label class="col-12"></label>
                                 <label class="col-1"></label>
                                 <label class="col-2">Usuario:</label>
-                                <input class="col-8" type="email" name="email" placeholder="email@gmail.com" required>         
+                                <input class="col-8" type="email" name="emailLogin" placeholder="email@gmail.com" required>         
                                 <label class ="col-1"></label>
                                 <label class="col-12"></label>
                             </label>
@@ -35,7 +35,7 @@
                                 <label class="col-12"></label>
                                 <label class="col-1"></label>
                                 <label class="col-2">Contraseña </label>
-                                <input class="col-8" type="text" name="password" required>
+                                <input class="col-8" type="text" name="passwordLogin" required>
                                 <label class="col-1"></label>
                                 <label class="col-12"></label>
                             </label>

@@ -106,7 +106,7 @@ public class ConexionEstatica {
             }
                                            
             for(Usuario usu:usuariosRol) {
-                if(usu.getRol()==1) {
+                if(usu.getRol()==0) {
                     hasAdmin = true;
                 }
             }
@@ -122,14 +122,14 @@ public class ConexionEstatica {
      * @return 
      */
     
-    public static LinkedList obtenerUsuarios() {
+    public static LinkedList obtenerUsuariosBasic() {
         LinkedList usuarioBD = new LinkedList<>();
         Usuario usu = null;
         try {
             String sentencia = "SELECT * FROM usuario";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             while(Conj_Registros.next()){
-                usu = new Usuario(Conj_Registros.getString("email"), Conj_Registros.getString("password"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getInt("edad"),Conj_Registros.getString("genero"));
+                usu = new Usuario(Conj_Registros.getString("email"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getBoolean("activo"));
                 usuarioBD.add(usu);
             }
         } catch (SQLException ex) {
@@ -171,8 +171,20 @@ public class ConexionEstatica {
     }
 
     //----------------------------------------------------------
-    public void Borrar_Dato(String tabla, String DNI) throws SQLException {
-        String Sentencia = "DELETE FROM " + tabla + " WHERE DNI = '" + DNI + "'";
+    public static void Borrar_Usuario(String email) throws SQLException {
+        String Sentencia = "DELETE FROM usuario WHERE email = '" + email + "'";
+        ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
+    }
+    
+    public static void Set_Active(String email, boolean activar) throws SQLException {
+        String Sentencia;
+        
+        if(activar) {
+            Sentencia = "UPDATE usuario SET activo = true WHERE email = '"+email+"'";
+        } else {
+            Sentencia = "UPDATE usuario SET activo = false WHERE email = '"+email+"'";
+        }
+        
         ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
     }
 

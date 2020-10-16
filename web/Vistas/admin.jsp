@@ -18,20 +18,20 @@
     <body>
         <header></header>
         <main class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-1"></div>
+            <div class="col-10" style="text-align: center">
                 <%
                 ConexionEstatica.nueva();
-                LinkedList<Usuario> usuarios = ConexionEstatica.obtenerUsuarios();
+                LinkedList<Usuario> usuarios = ConexionEstatica.obtenerUsuariosBasic();
                 %>
                 <label class="row">   
                     <label class="col-1"></label>
-                    <label class="col-2" name ="dni">Email</label>
-                    <label class="col-2" name ="dni">Nombre</label>
-                    <label class="col-2" name ="dni">Apellido</label>
-                    <label class="col-1" name ="dni">Edad</label>
-                    <label class="col-1" name ="dni">Genero</label>
-                    <label class="col-1"></label>
+                    <label class="col-3">Email</label>
+                    <label class="col-2">Nombre</label>
+                    <label class="col-2">Apellido</label>
+                    <label class="col-1"></label>  
+                    <label class="col-1">Habilitar</label>
+                    <label class="col-1">Admin</label>         
                 </label>
                 <%
                 for(Usuario aux : usuarios) {
@@ -39,27 +39,48 @@
                 <form name="formAdmin>" action="../controlador.jsp" method="POST">
                     <label class="row">   
                         <label class="col-1"></label>
-                        <label class="col-2" name ="dni"><%=aux.getEmail()%></label>
-                        <label class="col-2" name ="dni"><%=aux.getName()%></label>
-                        <label class="col-2" name ="dni"><%=aux.getApellido()%></label>
-                        <label class="col-1" name ="dni"><%=aux.getEdad()%></label>
-                        <label class="col-1" name ="dni"><%=aux.getGenero()%></label>
-                        <label class="col-1"></label>
-                    </label>
-                    <label class="row">
-                        <label class="col-12">
-                         
-                        <input class="col-1"type="submit" name="borrarCrud" value="Borrar">
-                        <input class="col-1"type="submit" name="activCRUD" value="Activar">
-                        <input class="col-1"type="submit" name="desactCrud" value="Desactivar"> 
-                    </label>
-                    
+                        <label class="col-3" name ="email" value="<%=aux.getEmail()%>"><%=aux.getEmail()%></label>
+                        <input type="text" name ="emailAd" value="<%=aux.getEmail()%>" style="display: none">
+                        <label class="col-2" name ="nombreAd"><%=aux.getName()%></label>
+                        <label class="col-2" name ="apellidoAd"><%=aux.getApellido()%></label>  
+                        <label class="col-1">
+                            <input type="submit" name="borrarCrud" value="B">
+                        </label>                        
+                        <label class="col-1">
+                            <%
+                            if( !aux.isActivo()) {
+                            %>
+                            <input type="submit" name="activCRUD" value="Habilitar">
+                            <%
+                            } else {
+                            %>
+                            <input type="submit" name="desCRUD" value="Deshabilitar">
+                            <%
+                            }
+                            %>                                                        
+                        </label>
+                        <label class="col-1">
+                            <%
+                            ConexionEstatica.nueva();
+                            Boolean hasAdmin = ConexionEstatica.getRol(aux.getEmail());
+                            if( hasAdmin) {
+                            %>
+                            <input type="submit" name="setAdmin" value="Revocar">
+                            <%
+                            } else {
+                            %>
+                            <input type="submit" name="revokeAdmin" value="Otorgar">
+                            <%
+                            }
+                            %>                                                        
+                        </label>                        
+                    </label>                                        
                 </form>
                 <%                      
                 }
                 %>
             </div>
-            <div class="col-2"></div> 
+            <div class="col-1"></div> 
         </main>
         <footer></footer>
     </body>
