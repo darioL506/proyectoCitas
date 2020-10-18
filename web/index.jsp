@@ -46,11 +46,13 @@
                             </label>                                                      
                         </form>
                     </div>                    
-                    <form class="col-6" name="form2" action="controlador.jsp">
-                    <input type="submit" name="registButton" value="Registrarse">
+                    <form class="col-6 row" style="text-align: center" name="form2" action="controlador.jsp">
+                        <label class="col-12">¿No tienes cuenta?</label>
+                        <label class="col-12"><input type="submit" name="registButton" value="Registrarse"></label>
                     </form>
-                    <form class="col-6" name="form3" action="controlador.jsp">
-                        <input type="submit" name="recoverPass" value="Recuperar contraseña">
+                    <form class="col-6 row" style="text-align: center" name="form3" action="controlador.jsp">
+                        <label class="col-12">¿Te has olvidado de tu contraseña?</label>
+                        <label class="col-12"><input type="submit" name="recoverPass" value="Recuperar contraseña"></label>
                     </form>
                 </div>                
             </div>

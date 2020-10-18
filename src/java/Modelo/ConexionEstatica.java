@@ -78,7 +78,7 @@ public class ConexionEstatica {
     public static Usuario login(String email, String password) {
         Usuario existe = null;
         try {
-            String sentencia = "SELECT * FROM usuario WHERE email = '" + email + "' AND password = '" + password +"'";
+            String sentencia = "SELECT * FROM usuario WHERE email = '" + email + "' AND pass = '" + password +"'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             if (ConexionEstatica.Conj_Registros.next())//Si devuelve true es que existe.
             {
@@ -91,13 +91,12 @@ public class ConexionEstatica {
     }
 
     
-    public static boolean getRol(String email) {
+    public static boolean getRol(String email, int rol) {
         LinkedList<Usuario> usuariosRol = new LinkedList<>();
         Usuario aux = null;
-        Boolean hasAdmin = false;
+        Boolean hasRol = false;
         try {
-            String sentencia = "SELECT * FROM rolUsuario WHERE emailUsu = '"+ email +"'";
-            String m = email;
+            String sentencia = "SELECT * FROM rolusuario WHERE emailUsu = '"+ email +"'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             
             while(Conj_Registros.next()){
@@ -106,15 +105,31 @@ public class ConexionEstatica {
             }
                                            
             for(Usuario usu:usuariosRol) {
-                if(usu.getRol()==0) {
-                    hasAdmin = true;
+                if(usu.getRol()==rol) {
+                    hasRol = true;
                 }
             }
             
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
         }
-        return hasAdmin;
+        return hasRol;
+    }
+    
+    public static void Set_Rol(String email, int rol) throws SQLException {
+        String Sentencia;
+        
+        if(!getRol(email,rol)) {
+            Sentencia = "INSERT INTO rolusuario "
+                    + "VALUES (NULL, '"+email+"', "+rol+")";
+            ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
+        }
+                
+    }
+    
+    public static void Borrar_Rol(String email, int rol) throws SQLException {
+        String Sentencia = "DELETE FROM rolusuario WHERE emailUsu = '" + email + "' AND idRol = "+rol+"";
+        ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
     }
     
     /**
@@ -171,6 +186,12 @@ public class ConexionEstatica {
     }
 
     //----------------------------------------------------------
+    public static void Insertar_Usuario (String email, String password, String nombre, String apellido, int edad, String genero) throws SQLException {
+        String Sentencia = "INSERT INTO usuario (email, pass, nombre, apellido, edad, genero) "
+                + "VALUES ('"+email+"', '"+password+"', '"+nombre+"', '"+apellido+"', "+edad+", '"+genero+"')";
+        ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
+    }
+    
     public static void Borrar_Usuario(String email) throws SQLException {
         String Sentencia = "DELETE FROM usuario WHERE email = '" + email + "'";
         ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
@@ -187,5 +208,7 @@ public class ConexionEstatica {
         
         ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
     }
+    
+    
 
 }
