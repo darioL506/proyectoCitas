@@ -16,13 +16,14 @@
     </head>
     <body>
         <%
+            //Página de login
             if (request.getParameter("submLog")!=null) {
                 ConexionEstatica.nueva();
                 Usuario aux = ConexionEstatica.login(request.getParameter("emailLogin"),request.getParameter("passwordLogin"));
                 
                 if(aux!=null) {                   
                     
-                    Boolean hasAdmin = ConexionEstatica.getRol(request.getParameter("emailLogin"));
+                    Boolean hasAdmin = ConexionEstatica.getRol(request.getParameter("emailLogin"),0);
                                         
                     ConexionEstatica.cerrarBD();
                     
@@ -34,6 +35,23 @@
                 }
             }
             
+            if (request.getParameter("registButton")!=null) {
+                response.sendRedirect("Vistas/registro.jsp");
+            }
+            
+            //Página registro
+            if (request.getParameter("submRegist")!=null) {
+                ConexionEstatica.nueva();
+                Usuario aux = ConexionEstatica.login(request.getParameter("emailLogin"),request.getParameter("passwordLogin"));
+                if(aux==null) {
+                    ConexionEstatica.Insertar_Usuario(request.getParameter("emaiRegist"), request.getParameter("passwordRegist"), request.getParameter("nombreRegist"), request.getParameter("apellRegist"), Integer.parseInt(request.getParameter("edadRegist")), request.getParameter("generoRegist"));
+                    response.sendRedirect("index.jsp");
+                } else {
+                    response.sendRedirect("index.jsp");
+                }
+            }
+            
+            //Pagina administrador
             if (request.getParameter("borrarCrud")!=null) {
                 ConexionEstatica.nueva();
                 String aux = request.getParameter("emailAd");
@@ -56,6 +74,21 @@
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("Vistas/admin.jsp");
             }
+            
+            if (request.getParameter("setAdmin")!=null) {
+                ConexionEstatica.nueva();
+                ConexionEstatica.Set_Rol(request.getParameter("emailAd"), 0);
+                ConexionEstatica.cerrarBD();
+                response.sendRedirect("Vistas/admin.jsp");
+            }
+            
+            if (request.getParameter("revokeAdmin")!=null) {
+                ConexionEstatica.nueva();
+                ConexionEstatica.Borrar_Rol(request.getParameter("emailAd"), 0);
+                ConexionEstatica.cerrarBD();
+                response.sendRedirect("Vistas/admin.jsp");
+            }
+                        
             
         %>
     </body>

@@ -62,14 +62,14 @@
                         <label class="col-1">
                             <%
                             ConexionEstatica.nueva();
-                            Boolean hasAdmin = ConexionEstatica.getRol(aux.getEmail());
+                            Boolean hasAdmin = ConexionEstatica.getRol(aux.getEmail(),0);
                             if( hasAdmin) {
                             %>
-                            <input type="submit" name="setAdmin" value="Revocar">
+                            <input type="submit" name="revokeAdmin" value="Revocar">
                             <%
                             } else {
                             %>
-                            <input type="submit" name="revokeAdmin" value="Otorgar">
+                            <input type="submit" name="setAdmin" value="Otorgar">
                             <%
                             }
                             %>                                                        
