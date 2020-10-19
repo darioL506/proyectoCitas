@@ -4,6 +4,7 @@
     Author     : dario
 --%>
 
+<%@page import="Modelo.Preferencias"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.ConexionEstatica"%>
@@ -19,20 +20,33 @@
             //Página de login
             if (request.getParameter("submLog")!=null) {
                 ConexionEstatica.nueva();
-                Usuario aux = ConexionEstatica.login(request.getParameter("emailLogin"),request.getParameter("passwordLogin"));
+                
+                String email = request.getParameter("emailLogin");
+                                
+                Usuario aux = ConexionEstatica.login(email,request.getParameter("passwordLogin"));
                 
                 if(aux!=null) {                   
                     
+                    session.setAttribute("emailAct", email);
+                    
                     Boolean hasAdmin = ConexionEstatica.getRol(request.getParameter("emailLogin"),0);
                                         
-                    ConexionEstatica.cerrarBD();
+                    if (ConexionEstatica.Get_Preferencias(email)==null) {
+                        response.sendRedirect("Vistas/preferencias.jsp");
+                    }
                     
+                    /*
                     if(hasAdmin) {
                         response.sendRedirect("Vistas/admin.jsp");
                     } else {                    
                         response.sendRedirect("Vistas/valido.jsp");
-                    }
+                    }*/
                 }
+                
+                
+                
+                ConexionEstatica.cerrarBD();
+                
             }
             
             if (request.getParameter("registButton")!=null) {
@@ -88,7 +102,30 @@
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("Vistas/admin.jsp");
             }
-                        
+            
+            //Página preferencias
+            if (request.getParameter("submPref")!=null) {
+                ConexionEstatica.nueva();
+                
+                Boolean rel = false;
+                Boolean hijos = false;
+                
+                if(request.getParameter("relPref").equals("s")) {
+                    rel = true;
+                }
+                
+                if(request.getParameter("hijosPref").equals("s")) {
+                    rel = true;
+                }
+                                
+                if(ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString())!=null ) {
+                    ConexionEstatica.Update_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
+                    response.sendRedirect("index.jsp");                   
+                } else {
+                    ConexionEstatica.Insertar_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
+                }
+                ConexionEstatica.cerrarBD();
+            }
             
         %>
     </body>
