@@ -24,29 +24,29 @@
                 ConexionEstatica.nueva();
                 LinkedList<Usuario> usuarios = ConexionEstatica.obtenerUsuariosBasic();
                 %>
-                <label class="row">   
-                    <label class="col-1"></label>
-                    <label class="col-3">Email</label>
-                    <label class="col-2">Nombre</label>
-                    <label class="col-2">Apellido</label>
-                    <label class="col-1"></label>  
-                    <label class="col-1">Habilitar</label>
-                    <label class="col-1">Admin</label>         
-                </label>
+                <div class="row">   
+                    <div class="col-1"></div>
+                    <div class="col-3">Email</div>
+                    <div class="col-2">Nombre</div>
+                    <div class="col-2">Apellido</div>
+                    <div class="col-1"></div>  
+                    <div class="col-1">Habilitar</div>
+                    <div class="col-1">Admin</div>         
+                </div>
                 <%
                 for(Usuario aux : usuarios) {
                 %>
                 <form name="formAdmin>" action="../controlador.jsp" method="POST">
-                    <label class="row">   
-                        <label class="col-1"></label>
-                        <label class="col-3" name ="email" value="<%=aux.getEmail()%>"><%=aux.getEmail()%></label>
+                    <div class="row">   
+                        <div class="col-1"></div>
+                        <div class="col-3" name ="email" value="<%=aux.getEmail()%>"><%=aux.getEmail()%></div>
                         <input type="text" name ="emailAd" value="<%=aux.getEmail()%>" style="display: none">
-                        <label class="col-2" name ="nombreAd"><%=aux.getName()%></label>
-                        <label class="col-2" name ="apellidoAd"><%=aux.getApellido()%></label>  
-                        <label class="col-1">
+                        <div class="col-2" name ="nombreAd"><%=aux.getName()%></div>
+                        <div class="col-2" name ="apellidoAd"><%=aux.getApellido()%></div>  
+                        <div class="col-1">
                             <input type="submit" name="borrarCrud" value="B">
-                        </label>                        
-                        <label class="col-1">
+                        </div>                        
+                        <div class="col-1">
                             <%
                             if( !aux.isActivo()) {
                             %>
@@ -58,8 +58,8 @@
                             <%
                             }
                             %>                                                        
-                        </label>
-                        <label class="col-1">
+                        </div>
+                        <div class="col-1">
                             <%
                             ConexionEstatica.nueva();
                             Boolean hasAdmin = ConexionEstatica.getRol(aux.getEmail(),0);
@@ -73,8 +73,8 @@
                             <%
                             }
                             %>                                                        
-                        </label>                        
-                    </label>                                        
+                        </div>                        
+                    </div>                                        
                 </form>
                 <%                      
                 }
