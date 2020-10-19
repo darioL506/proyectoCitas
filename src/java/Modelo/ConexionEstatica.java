@@ -188,8 +188,9 @@ public class ConexionEstatica {
             String sentencia = "SELECT * FROM preferencias "
                     + "WHERE emailUsu = '"+email+"'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            Conj_Registros.next();
-            pref = new Preferencias(Conj_Registros.getString("emailUsu"),Conj_Registros.getBoolean("relacion"),Conj_Registros.getInt("deportes"),Conj_Registros.getInt("arte"),Conj_Registros.getInt("politica"),Conj_Registros.getBoolean("hijos"),Conj_Registros.getString("interes"));
+            while(Conj_Registros.next()) {
+                pref = new Preferencias(Conj_Registros.getString("emailUsu"),Conj_Registros.getBoolean("relacion"),Conj_Registros.getInt("deportes"),Conj_Registros.getInt("arte"),Conj_Registros.getInt("politica"),Conj_Registros.getBoolean("hijos"),Conj_Registros.getString("interes"));
+            }
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
         }
@@ -209,7 +210,7 @@ public class ConexionEstatica {
     public static void Update_Preferencias (String email, Boolean relacion, String deportes, String arte, String politica, boolean hijos, String interes) throws SQLException {
         try {
             String sentencia = "UPDATE preferencias SET "
-                    + "relacion = "+relacion+", deportes = "+deportes+", arte = "+arte+", politica = "+politica+", hijos = "+hijos+", interes = "+interes+" "
+                    + "relacion = "+relacion+", deportes = "+deportes+", arte = "+arte+", politica = "+politica+", hijos = "+hijos+", interes = '"+interes+"' "
                     + "WHERE emailUsu = '"+email+"'";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia); 
         } catch (SQLException ex) {

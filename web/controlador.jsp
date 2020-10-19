@@ -31,9 +31,9 @@
                     
                     Boolean hasAdmin = ConexionEstatica.getRol(request.getParameter("emailLogin"),0);
                                         
-                    //if(ConexionEstatica.Get_Preferencias(email)==null) {
+                    if (ConexionEstatica.Get_Preferencias(email)==null) {
                         response.sendRedirect("Vistas/preferencias.jsp");
-                    //}
+                    }
                     
                     /*
                     if(hasAdmin) {
@@ -117,14 +117,14 @@
                 if(request.getParameter("hijosPref").equals("s")) {
                     rel = true;
                 }
-                
-                Preferencias aux = ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString());
+                                
                 if(ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString())!=null ) {
                     ConexionEstatica.Update_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
                     response.sendRedirect("index.jsp");                   
                 } else {
                     ConexionEstatica.Insertar_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
                 }
+                ConexionEstatica.cerrarBD();
             }
             
         %>
