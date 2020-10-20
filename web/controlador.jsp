@@ -29,18 +29,20 @@
                     
                     session.setAttribute("emailAct", email);
                     
+                    session.setAttribute("nombreAct", aux.getName()+" "+aux.getApellido());
+                    
                     Boolean hasAdmin = ConexionEstatica.getRol(request.getParameter("emailLogin"),0);
                                         
                     if (ConexionEstatica.Get_Preferencias(email)==null) {
                         response.sendRedirect("Vistas/preferencias.jsp");
                     }
                     
-                    /*
+                    
                     if(hasAdmin) {
                         response.sendRedirect("Vistas/admin.jsp");
                     } else {                    
                         response.sendRedirect("Vistas/valido.jsp");
-                    }*/
+                    }
                 }
                 
                 
