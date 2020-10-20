@@ -35,12 +35,12 @@
                         response.sendRedirect("Vistas/preferencias.jsp");
                     }
                     
-                    /*
+                    
                     if(hasAdmin) {
                         response.sendRedirect("Vistas/admin.jsp");
                     } else {                    
                         response.sendRedirect("Vistas/valido.jsp");
-                    }*/
+                    }
                 }
                 
                 
