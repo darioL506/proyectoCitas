@@ -2,6 +2,8 @@ package Modelo;
 
 import Auxiliar.Constantes;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -179,8 +181,7 @@ public class ConexionEstatica {
         ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
     }
     
-    //Gestion de preferncias
-    
+    //Gestion de preferencias    
     public static Preferencias Get_Preferencias (String email) {
         
         Preferencias pref = null;
@@ -215,6 +216,19 @@ public class ConexionEstatica {
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia); 
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
+        }
+    }
+    
+    //Gestion de mensajes
+    public static void Send_Email (String asunto, String cuerpo, String emisor, String receptor) throws SQLException {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try {
+            String sentencia ="INSERT INTO mensaje (asunto, cuerpo, emisor, receptor, fecha) "
+                    + "VALUES ('"+asunto+"', '"+cuerpo+"', '"+emisor+"', '"+receptor+"', "+date.format(formatter)+")";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia); 
+        } catch (SQLException ex) {
+            
         }
     }
 

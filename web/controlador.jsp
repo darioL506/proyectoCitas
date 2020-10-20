@@ -35,16 +35,14 @@
                                         
                     if (ConexionEstatica.Get_Preferencias(email)==null) {
                         response.sendRedirect("Vistas/preferencias.jsp");
-                    }
+                    }                                        
                     
-                    response.sendRedirect("Vistas/inicio.jsp");
-                    /*
                     if(hasAdmin) {
                         response.sendRedirect("Vistas/admin.jsp");
                     } else {                    
                         response.sendRedirect("Vistas/inicio.jsp");
                     }
-                    */
+                    
                 }
                 
                 
@@ -138,6 +136,12 @@
             //Mensajes
             if(request.getParameter("userNewM")!=null) {
                 response.sendRedirect("Vistas/mensaje.jsp");
+            }
+            
+            if(request.getParameter("sendMail")!=null) {
+                ConexionEstatica.nueva();
+                ConexionEstatica.Send_Email(request.getParameter("asunto"), request.getParameter("cuerpo"), session.getAttribute("emailAct").toString(), request.getParameter("receptor"));
+                ConexionEstatica.cerrarBD();
             }
             
         %>

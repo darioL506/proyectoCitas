@@ -17,11 +17,11 @@
                     <label style="padding: 15px"><%=session.getAttribute("nombreAct")%></label><i class="fa fa-caret-down" aria-hidden="true"></i>
                 </button>    
 
-                <div class="dropdown-content">
-                    <a href="">Editar perfil</a>
-                    <a href="/proyectoCitas/Vistas/preferencias.jsp">Editar preferencias</a>
-                    <a href="">Ver amigos</a>                                
-                    <a href="#">Cerrar sesion</a>
+                <div class="dropdown-content row">
+                    <a class="col-12" href="${pageContext.request.contextPath}/Vistas/inicio.jsp">Perfil</a>
+                    <a class="col-12" href="${pageContext.request.contextPath}/Vistas/mensaje.jsp">Nuevo mensaje</a>
+                    <a class="col-12" href="">Ver amigos</a>
+                    <a class="col-12" href="#">Cerrar sesion</a>
                 </div>
             </div>
         </div> 

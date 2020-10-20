@@ -14,7 +14,7 @@
     </head>
     <body>
         <header>
-            
+            <jsp:include page="../Comun/header.jsp"/>
         </header>
         
         <main class="row">
@@ -22,14 +22,13 @@
             <div class="col-m-10 col-8">
                 <form name="form1" action="../controlador.jsp">
                     <div class="col-3">Asunto</div>                    
-                    <input class="col-9" type="text" name="asunto">
+                    <input class="col-9" type="text" name="asunto" required>
                     <div class="col-12"></div>
                     <div class="col-3">Destinatario</div>                    
-                    <input class="col-9" type="text" name="receptor">
-                    <div class="col-12"></div>
-                    
-                        <textarea class="col-12" name="cuerpo" rows="4" cols="50" placeholder="Tu mensaje va aquí"></textarea>
-                    
+                    <input class="col-9" type="text" name="receptor" required>
+                    <div class="col-12"></div>                    
+                    <textarea class="col-12" name="cuerpo" rows="4" cols="50" placeholder="Tu mensaje va aquí" required></textarea>
+                    <input type="submit" name="sendMail" value="Enviar">
                 </form>
             </div>
             <div class="col-m-1 col-2"></div>

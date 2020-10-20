@@ -9,9 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="../css/rejillas.css">
-        <link rel="stylesheet" type="text/css" href="../css/header.css">
-        <script src="https://kit.fontawesome.com/3cf8885432.js" crossorigin="anonymous"></script>
+        <jsp:include page="../Comun/estilos.jsp"/>
         <title>JSP Page</title>
     </head>
     <body>
