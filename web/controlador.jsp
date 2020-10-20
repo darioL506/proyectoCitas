@@ -37,12 +37,14 @@
                         response.sendRedirect("Vistas/preferencias.jsp");
                     }
                     
-                    
+                    response.sendRedirect("Vistas/inicio.jsp");
+                    /*
                     if(hasAdmin) {
                         response.sendRedirect("Vistas/admin.jsp");
                     } else {                    
-                        response.sendRedirect("Vistas/valido.jsp");
+                        response.sendRedirect("Vistas/inicio.jsp");
                     }
+                    */
                 }
                 
                 
@@ -106,6 +108,10 @@
             }
             
             //Página preferencias
+            if (request.getParameter("userPref")!=null) {
+                response.sendRedirect("Vistas/preferencias.jsp");
+            }
+            
             if (request.getParameter("submPref")!=null) {
                 ConexionEstatica.nueva();
                 
@@ -127,6 +133,11 @@
                     ConexionEstatica.Insertar_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
                 }
                 ConexionEstatica.cerrarBD();
+            }
+            
+            //Mensajes
+            if(request.getParameter("userNewM")!=null) {
+                response.sendRedirect("Vistas/mensaje.jsp");
             }
             
         %>

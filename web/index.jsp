@@ -17,45 +17,45 @@
         <jsp:include page="Comun/header.jsp"/>
         
         <main class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-m-1 col-2"></div>
+            <div class="col-m-10 col-8">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-m-12 col-12">
                         <form name="form1" action="controlador.jsp">
                             <div class="row">                                
-                                <div class="col-12"></div>
-                                <div class="col-1"></div>
-                                <div class="col-2">Usuario:</div>
-                                <input class="col-8" type="email" name="emailLogin" placeholder="email@gmail.com" required>         
-                                <div class ="col-1"></div>
-                                <div class="col-12"></div>
+                                <div class="col-m-12 col-12"></div>
+                                <div class="col-m-1 col-1"></div>
+                                <div class="col-m-3 col-3">Usuario:</div>
+                                <input class="col-m-7 col-7" type="email" name="emailLogin" placeholder="email@gmail.com" required>         
+                                <div class ="col-m-1 col-1"></div>
+                                <div class="col-m-12 col-12"></div>
                             </div>
                             <div class="row">
-                                <div class="col-12"></div>
-                                <div class="col-1"></div>
-                                <div class="col-2">Contraseña </div>
-                                <input class="col-8" type="password" name="passwordLogin" required>
-                                <div class="col-1"></div>
-                                <div class="col-12"></div>
+                                <div class="col-m-12 col-12"></div>
+                                <div class="col-m-1 col-1"></div>
+                                <div class="col-m-4 col-4">Contraseña </div>
+                                <input class="col-m-6 col-6" type="password" name="passwordLogin" required>
+                                <div class="col-m-1 col-1"></div>
+                                <div class="col-m-12 col-12"></div>
                             </div>
                             <div class="row">
-                                <div class="col-5"></div>
-                                <input class="col-2" type="submit" name="submLog" value="Aceptar"> 
-                                <div class="col-5"></div>
+                                <div class="col-m-5 col-5"></div>
+                                <div class="col-m-2 col-2">
+                                    <input type="submit" name="submLog" value="Aceptar"> 
+                                </div>
+                                <div class="col-m-5 col-5"></div>
                             </div>                                                      
                         </form>
                     </div>                    
-                    <form class="col-6 row" style="text-align: center" name="form2" action="controlador.jsp">
-                        <div class="col-12">¿No tienes cuenta?</div>
-                        <div class="col-12"><input type="submit" name="registButton" value="Registrarse"></div>
-                    </form>
-                    <form class="col-6 row" style="text-align: center" name="form3" action="controlador.jsp">
-                        <div class="col-12">¿Te has olvidado de tu contraseña?</div>
-                        <div class="col-12"><input type="submit" name="recoverPass" value="Recuperar contraseña"></div>
-                    </form>
+                    <div class="col-m-6 col-6 row">
+                        <div class="col-m-12 col-12"><a href="Vistas/registro.jsp">¿No tienes cuenta?</a></div>                        
+                    </div>
+                    <div class="col-m-6 col-6 row">
+                        <div class="col-m-12 col-12"><a href="">¿Te has olvidado de tu contraseña?</a></div>                        
+                    </div>
                 </div>                
             </div>
-            <div class="col-3"></div>                                    
+            <div class="col-m-1 col-2"></div>                                    
         </main>
         
         <footer>

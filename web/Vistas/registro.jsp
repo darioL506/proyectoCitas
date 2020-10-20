@@ -19,72 +19,70 @@
         </header>
         
         <main class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-m-1 col-2"></div>
+            <div class="col-m-10 col-8">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-m-12 col-12">
                         <form name="form1" action="../controlador.jsp">
                             <div class="row">
-                                <div class="col-12"></div>
-                                <div class="col-1"></div>
-                                <label class="col-2">Email </label>
-                                <div class="col-1"></div>
-                                <input class="col-7" type="email" name="emaiRegist" placeholder="email@gmail.com" required>         
-                                <div class ="col-1"></div>
-                                <div class="col-12"></div>
+                                <div class="col-m-12 col-12"></div>
+                                <div class="col-m-1 col-1"></div>
+                                <label class="col-m-3 col-3">Email </label>                                
+                                <input class="col-m-7 col-7" type="email" name="emaiRegist" placeholder="email@gmail.com" required>         
+                                <div class ="col-m-1 col-1"></div>
+                                <div class="col-m-12 col-12"></div>
                             </div>
                             <div class="row">
-                                <div class="col-12"></div>
-                                <div class="col-1"></div>
-                                <label class="col-2">Contraseña </label>
-                                <div class="col-1"></div>
-                                <input class="col-7" type="password" name="passwordRegist" required>
-                                <div class="col-1"></div>
-                                <div class="col-12"></div>
+                                <div class="col-m-12 col-12"></div>
+                                <div class="col-m-1 col-1"></div>
+                                <label class="col-m-4 col-4">Contraseña </label>                                
+                                <input class="col-m-6 col-6" type="password" name="passwordRegist" required>
+                                <div class="col-m-1 col-1"></div>
+                                <div class="col-m-12 col-12"></div>
                             </div>
                             <div class="row">
-                                <div class="col-12"></div>
-                                <div class="col-1"></div>
-                                <label class="col-2">Nombre </label>
-                                <div class="col-1"></div>
-                                <input class="col-7" type="text" name="nombreRegist" placeholder="Nombre" required>
-                                <div class="col-1"></div>
-                                <div class="col-12"></div>
+                                <div class="col-m-12 col-12"></div> 
+                                <div class="col-m-1 col-1"></div>
+                                <label class="col-m-3 col-3">Nombre </label>                                
+                                <input class="col-m-7 col-7" type="text" name="nombreRegist" placeholder="Nombre" required>
+                                <div class="col-m-1 col-1"></div>
+                                <div class="col-m-12 col-12"></div>
                             </div>
                              <div class="row">
-                                <div class="col-12"></div>
-                                <div class="col-1"></div>
-                                <label class="col-2">Apellido </label>
-                                <div class="col-1"></div>
-                                <input class="col-7" type="text" name="apellRegist" placeholder="Apellido" required>
-                                <div class="col-1"></div>
-                                <div class="col-12"></div>
+                                <div class="col-m-12 col-12"></div>
+                                <div class="col-m-1 col-1"></div>
+                                <label class="col-m-3 col-3">Apellido </label>                                
+                                <input class="col-m-7 col-7" type="text" name="apellRegist" placeholder="Apellido" required>
+                                <div class="col-m-1 col-1"></div>
+                                <div class="col-m-12 col-12"></div>
                             </div>   
                             <div class="row">
-                                <div class="col-12"></div>
-                                <div class="col-1"></div>
-                                <label class="col-2">Genero: </label>
-                                <div class="col-2">
+                                <div class="col-m-12 col-12"></div>
+                                <div class="col-m-1 col-1"></div>
+                                <label class="col-m-2 col-2">Genero: </label>
+                                <div class="col-m-2 col-2">
                                     <select name="generoRegist" required>
                                         <option value="m">Hombre</option>
                                         <option value="f">Mujer</option>
                                     </select>                             
                                 </div>
-                                <div class="col-1"></div>
-                                <label class="col-2">Edad</label>
-                                <input class="col-2" type="number" name="edadRegist" placeholder="18" min="18" max="120" required>                                
-                                <div class="col-12"></div>
+                                <div class="col-m-1 col-1"></div>
+                                <label class="col-m-2 col-2">Edad</label>
+                                <input class="col-m-2 col-2" type="number" name="edadRegist" placeholder="18" min="18" max="120" required>                                
+                                <div class="col-m-12 col-12"></div>
                             </div>  
                             <div class="row">
-                                <div class="col-5"></div>
-                                <input class="col-2" type="submit" name="submRegist" value="Aceptar"> 
-                                <div class="col-5"></div>
+                                <div class="col-m-5 col-5"></div>
+                                <div class="col-m-2 col-2">
+                                    <input type="submit" name="submRegist" value="Aceptar"> 
+                                </div>
+                                <div class="col-m-5 col-5"></div>
                             </div>                                                      
                         </form>
                     </div>                                        
                 </div>                
             </div>
-            <div class="col-3"></div>  
+            <div class="col-m-1 col-2"></div>  
         </main>
     </body>
 </html>
