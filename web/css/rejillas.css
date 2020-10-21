@@ -134,6 +134,8 @@ h2
     color:lightyellow;
 }
 
+/*Diseño de navbar y dropdown*/
+
 .headerNav {
   overflow: hidden;
   background-color: #ff4d4d;  
@@ -198,4 +200,3 @@ h2
 .dropdown:hover .dropdown-content {
   display: block;
 }
-

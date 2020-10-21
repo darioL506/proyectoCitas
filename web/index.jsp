@@ -4,6 +4,9 @@
     Author     : dario
 --%>
 
+<%@page import="java.io.File"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="java.nio.file.Paths"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,8 +18,10 @@
     <body>
         
         <header>
-            <jsp:include page="Comun/header.jsp"/>
+            <jsp:include page="Comun/header.jsp"/>            
         </header>
+        
+        
         
         <main class="row">
             <div class="col-m-1 col-2"></div>

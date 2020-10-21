@@ -4,10 +4,18 @@
     Author     : dario
 --%>
 
+<%@page import="Modelo.Mensaje"%>
+<%@page import="Auxiliar.Constantes"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="org.apache.commons.fileupload.FileItemFactory"%>
+<%@page import="java.util.List"%>
 <%@page import="Modelo.Preferencias"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.ConexionEstatica"%>
+<%@page import="java.io.File"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -136,13 +144,11 @@
             //Mensajes
             if(request.getParameter("userNewM")!=null) {
                 response.sendRedirect("Vistas/mensaje.jsp");
-            }
-            
-            if(request.getParameter("sendMail")!=null) {
-                ConexionEstatica.nueva();
-                ConexionEstatica.Send_Email(request.getParameter("asunto"), request.getParameter("cuerpo"), session.getAttribute("emailAct").toString(), request.getParameter("receptor"));
-                ConexionEstatica.cerrarBD();
-            }
+            } 
+
+            if(request.getParameter("userMail")!=null) {
+                response.sendRedirect("Vistas/entrada.jsp");
+            }  
             
         %>
     </body>

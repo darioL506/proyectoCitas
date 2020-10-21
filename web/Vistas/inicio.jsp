@@ -31,7 +31,7 @@
                                 <div class="col-12"><input type="submit" name="userMail" value="Ver mensajes"></div>
                                 <div class="col-12"><input type="submit" name="userNewM" value="Nuevo mensaje"></div>
                                 <div class="col-12"><input type="submit" name="userFriends" value="Ver amigos"></div>
-                                <div class="col-12"><input type="submit" name="userSearch" value="Buscar></div>
+                                <div class="col-12"><input type="submit" name="userSearch" value="Buscar"></div>
                             </div>
                         </form>
                     </div>

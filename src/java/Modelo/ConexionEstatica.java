@@ -220,16 +220,31 @@ public class ConexionEstatica {
     }
     
     //Gestion de mensajes
-    public static void Send_Email (String asunto, String cuerpo, String emisor, String receptor) throws SQLException {
+    public static void Send_Email (String asunto, String cuerpo, String emisor, String receptor, String nombreArch) throws SQLException {
         LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
-            String sentencia ="INSERT INTO mensaje (asunto, cuerpo, emisor, receptor, fecha) "
-                    + "VALUES ('"+asunto+"', '"+cuerpo+"', '"+emisor+"', '"+receptor+"', "+date.format(formatter)+")";
+            String sentencia ="INSERT INTO mensaje (asunto, cuerpo, emisor, receptor, fecha, fileName) "
+                    + "VALUES ('"+asunto+"', '"+cuerpo+"', '"+emisor+"', '"+receptor+"', '"+date.format(formatter)+"', '"+nombreArch+"')";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia); 
         } catch (SQLException ex) {
             
         }
     }
-
+    
+    public static LinkedList obtenerMensajesUsu(String mail) {
+        LinkedList mensajesBD = new LinkedList<>();
+        Mensaje email = null;
+        try {
+            String sentencia = "SELECT * FROM mensaje WHERE receptor = '"+mail+"' ORDER BY fecha ASC , idMail DESC";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){
+                email = new Mensaje (Conj_Registros.getString("asunto"),Conj_Registros.getString("cuerpo"),Conj_Registros.getString("emisor"),Conj_Registros.getString("receptor"),Conj_Registros.getDate("fecha").toString(),Conj_Registros.getBoolean("leido"),Conj_Registros.getString("fileName"));
+                mensajesBD.add(email);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en el acceso a la BD.");
+        }
+        return mensajesBD;
+    }
 }

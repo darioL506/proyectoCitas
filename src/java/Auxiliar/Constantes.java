@@ -5,6 +5,9 @@
  */
 package Auxiliar;
 
+import java.io.File;
+import java.nio.file.Paths;
+
 /**
  *
  * @author fernando
