@@ -11,13 +11,13 @@
     <div class="header-right">
         <%if(session.getAttribute("emailAct")!=null) {%>
         <div class="headerNav">
-            <div class="dropdown">    
+            <div class="dropdown-menu">    
 
                 <button class="dropbtn">
                     <label style="padding: 15px"><%=session.getAttribute("nombreAct")%></label><i class="fa fa-caret-down" aria-hidden="true"></i>
                 </button>    
 
-                <div class="dropdown-content row">
+                <div class="dropdown-menu-content row">
                     <a class="col-12" href="${pageContext.request.contextPath}/Vistas/inicio.jsp">Perfil</a>
                     <a class="col-12" href="${pageContext.request.contextPath}/Vistas/mensaje.jsp">Nuevo mensaje</a>
                     <a class="col-12" href="">Ver amigos</a>

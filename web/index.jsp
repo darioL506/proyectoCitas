@@ -19,9 +19,7 @@
         
         <header>
             <jsp:include page="Comun/header.jsp"/>            
-        </header>
-        
-        
+        </header>               
         
         <main class="row">
             <div class="col-m-1 col-2"></div>

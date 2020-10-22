@@ -30,12 +30,14 @@
                     for(Mensaje aux: mensajes) {
                         %>
                         <div class="row" id="mensaje">
-                            <div class="col-4"><a href="javascript:void(0);" onclick="verMensaje(this)"><%=aux.getAsunto()%></a></div>
-                            <div class="col-4"><%=aux.getAsunto()%></div>
-                            <div class="col-4"><%=aux.getFecha()%></div>
-                            <input type="text" name="cuerpoMensaje" class="col-12" style="display: none" value="<%=aux.getCuerpo()%>">
+                            <div class="dropdown">
+                                <div class="col-4"><a><%=aux.getAsunto()%></a></div>
+                                <div class="col-4"><%=aux.getAsunto()%></div>
+                                <div class="col-4"><%=aux.getFecha()%></div>
                                 
-                            
+                                <textarea class="col-12 dropdown-content" name="cuerpoMensaje"><%=aux.getCuerpo()%></textarea>
+                                
+                            </div>
                         </div>
                         <%
                     }

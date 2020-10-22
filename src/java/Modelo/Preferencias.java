@@ -69,7 +69,7 @@ public class Preferencias {
         this.politica = politica;
     }
 
-    public boolean isHijos() {
+    public boolean getHijos() {
         return hijos;
     }
 

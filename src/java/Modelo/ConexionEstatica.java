@@ -135,6 +135,20 @@ public class ConexionEstatica {
         }
         return usuarioBD;
     }
+    
+    public static Usuario Get_Usuario(String email) {        
+        Usuario usu = null;
+        try {
+            String sentencia = "SELECT * FROM usuario WHERE email = '"+email+"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){
+                usu = new Usuario(Conj_Registros.getString("email"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getInt("edad"), Conj_Registros.getString("genero"));                
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en el acceso a la BD.");
+        }
+        return usu;
+    }
 
     
     //Gestion de roles
