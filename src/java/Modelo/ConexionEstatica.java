@@ -246,7 +246,7 @@ public class ConexionEstatica {
         }
     }
     
-    public static LinkedList obtenerMensajesUsu(String mail) {
+    public static LinkedList obtenerMensajesUsu(String mail) throws SQLException {
         LinkedList mensajesBD = new LinkedList<>();
         Mensaje email = null;
         try {
@@ -261,4 +261,170 @@ public class ConexionEstatica {
         }
         return mensajesBD;
     }
+    
+    //Amigos
+    public static LinkedList Busqueda (Preferencias pref) throws SQLException {
+        LinkedList aux = new LinkedList<>();
+        String sentencia= "";
+        String sentencia2="";
+        
+        if(pref.getRelacion() && pref.getInteres().equals("m")) {
+            if(pref.getDeportes()>=pref.getArte() && pref.getDeportes()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'm' ORDER BY deportes DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'm' ORDER BY deportes DESC";
+            }
+            if(pref.getArte()>=pref.getDeportes() && pref.getArte()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'm' ORDER BY arte DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'm' ORDER BY arte DESC";
+            }
+            if(pref.getPolitica()>=pref.getArte() && pref.getPolitica()>=pref.getDeportes()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'm' ORDER BY politica DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'm' ORDER BY politica DESC";
+            }
+            
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+        }
+        
+        if(pref.getRelacion() && pref.getInteres().equals("f")) {
+            if(pref.getDeportes()>=pref.getArte() && pref.getDeportes()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'f' ORDER BY deportes DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'f' ORDER BY deportes DESC";
+            }
+            if(pref.getArte()>=pref.getDeportes() && pref.getArte()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'f' ORDER BY arte DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'f' ORDER BY arte DESC";
+            }
+            if(pref.getPolitica()>=pref.getArte() && pref.getPolitica()>=pref.getDeportes()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'f' ORDER BY politica DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'f' ORDER BY politica DESC";
+            }
+            
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+        }
+        
+        if(pref.getRelacion() && pref.getInteres().equals("b")) {
+            if(pref.getDeportes()>=pref.getArte() && pref.getDeportes()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 ORDER BY deportes DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 ORDER BY deportes DESC";
+            }
+            if(pref.getArte()>=pref.getDeportes() && pref.getArte()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 ORDER BY arte DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 ORDER BY arte DESC";
+            }
+            if(pref.getPolitica()>=pref.getArte() && pref.getPolitica()>=pref.getDeportes()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 1 ORDER BY politica DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 0 ORDER BY politica DESC";
+            }
+            
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+        }
+        
+        if(!pref.getRelacion() && pref.getInteres().equals("m")) {
+            if(pref.getDeportes()>=pref.getArte() && pref.getDeportes()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'm' ORDER BY deportes DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'm' ORDER BY deportes DESC";
+            }
+            if(pref.getArte()>=pref.getDeportes() && pref.getArte()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'm' ORDER BY arte DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'm' ORDER BY arte DESC";
+            }
+            if(pref.getPolitica()>=pref.getArte() && pref.getPolitica()>=pref.getDeportes()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'm' ORDER BY politica DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'm' ORDER BY politica DESC";
+            }
+            
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+        }
+        
+        if(!pref.getRelacion() && pref.getInteres().equals("f")) {
+            if(pref.getDeportes()>=pref.getArte() && pref.getDeportes()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'f' ORDER BY deportes DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'f' ORDER BY deportes DESC";
+            }
+            if(pref.getArte()>=pref.getDeportes() && pref.getArte()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'f' ORDER BY arte DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'f' ORDER BY arte DESC";
+            }
+            if(pref.getPolitica()>=pref.getArte() && pref.getPolitica()>=pref.getDeportes()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 AND interes LIKE 'f' ORDER BY politica DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 AND interes LIKE 'f' ORDER BY politica DESC";
+            }
+            
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+        }
+        
+        if(!pref.getRelacion() && pref.getInteres().equals("b")) {
+            if(pref.getDeportes()>=pref.getArte() && pref.getDeportes()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 ORDER BY deportes DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 ORDER BY deportes DESC";
+            }
+            if(pref.getArte()>=pref.getDeportes() && pref.getArte()>=pref.getPolitica()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 ORDER BY arte DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 ORDER BY arte DESC";
+            }
+            if(pref.getPolitica()>=pref.getArte() && pref.getPolitica()>=pref.getDeportes()) {
+                sentencia = "SELECT * FROM preferencias WHERE relacion = 0 ORDER BY politica DESC";
+                sentencia2 = "SELECT * FROM preferencias WHERE relacion = 1 ORDER BY politica DESC";
+            }
+            
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
+            while(Conj_Registros.next()){
+                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
+                aux.add(usu);
+            }
+        }
+        
+        return aux;
+    }
+    
 }

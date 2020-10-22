@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2020 a las 13:44:55
+-- Tiempo de generación: 22-10-2020 a las 14:23:29
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -29,8 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `amigos` (
   `emailUsu-1` varchar(50) NOT NULL,
-  `emailUsu-2` varchar(50) NOT NULL
+  `emailUsu-2` varchar(50) NOT NULL,
+  `acepta` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `amigos`
+--
+
+INSERT INTO `amigos` (`emailUsu-1`, `emailUsu-2`, `acepta`) VALUES
+('darioleong@gmail.com', 'otroej@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -39,14 +47,25 @@ CREATE TABLE `amigos` (
 --
 
 CREATE TABLE `mensaje` (
-  `idMail` int(11) NOT NULL,
+  `idMail` int(1) NOT NULL,
   `asunto` varchar(50) NOT NULL,
   `cuerpo` varchar(5000) NOT NULL,
   `emisor` varchar(50) NOT NULL,
   `receptor` varchar(50) NOT NULL,
   `fecha` date NOT NULL,
-  `leido` tinyint(1) NOT NULL
+  `leido` tinyint(1) NOT NULL DEFAULT 0,
+  `fileName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mensaje`
+--
+
+INSERT INTO `mensaje` (`idMail`, `asunto`, `cuerpo`, `emisor`, `receptor`, `fecha`, `leido`, `fileName`) VALUES
+(1, 'Prueba', 'Esto es un mensaje de prueba', 'darioleong@gmail.com', 'otroej@gmail.com', '2020-10-21', 0, ''),
+(11, 'Prueba', 'Esto es un mensaje de prueba', 'darioleong@gmail.com', 'otroej@gmail.com', '2020-10-21', 0, ''),
+(12, 'tertte', 'werwer', 'darioleong@gmail.com', 'otroej@gmail.com', '2020-10-21', 0, 'github.txt'),
+(13, 'asdasda', 'qweqweqw', 'darioleong@gmail.com', 'otroej@gmail.com', '2020-10-21', 0, 'proyectocitas.sql');
 
 -- --------------------------------------------------------
 
@@ -187,7 +206,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  MODIFY `idMail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMail` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `rolusuario`
@@ -203,8 +222,8 @@ ALTER TABLE `rolusuario`
 -- Filtros para la tabla `amigos`
 --
 ALTER TABLE `amigos`
-  ADD CONSTRAINT `email1` FOREIGN KEY (`emailUsu-1`) REFERENCES `usuario` (`email`),
-  ADD CONSTRAINT `email2` FOREIGN KEY (`emailUsu-2`) REFERENCES `usuario` (`email`);
+  ADD CONSTRAINT `email1` FOREIGN KEY (`emailUsu-1`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `email2` FOREIGN KEY (`emailUsu-2`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `preferencias`

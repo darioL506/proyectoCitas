@@ -21,13 +21,13 @@
         </header>
         
         <main class="row">
-            <div class="col-m-1 col-2"></div>
-            <div class="col-m-10 col-8">
+            <div class="col-m-1 col-1"></div>
+            <div class="col-m-10 col-10">
                 <div class="row">
                     <div class="col-m-6 col-6">
                         <%
                         ConexionEstatica.nueva();
-                        Preferencias pref = ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString());
+                        Preferencias pref = (Preferencias) session.getAttribute("prefAct");
                         Usuario usu = ConexionEstatica.Get_Usuario(session.getAttribute("emailAct").toString());
                         %>
                         <div class="row">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-m-1 col-2"></div>
+            <div class="col-m-1 col-1"></div>
         </main>
         
         <footer>

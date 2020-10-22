@@ -39,11 +39,14 @@
                     
                     session.setAttribute("nombreAct", aux.getName()+" "+aux.getApellido());
                     
+                    
                     Boolean hasAdmin = ConexionEstatica.getRol(request.getParameter("emailLogin"),0);
                                         
                     if (ConexionEstatica.Get_Preferencias(email)==null) {
                         response.sendRedirect("Vistas/preferencias.jsp");
                     }                                        
+                    
+                    session.setAttribute("prefAct", ConexionEstatica.Get_Preferencias(email));
                     
                     if(hasAdmin) {
                         response.sendRedirect("Vistas/admin.jsp");
@@ -134,9 +137,12 @@
                                 
                 if(ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString())!=null ) {
                     ConexionEstatica.Update_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
+                    session.setAttribute("prefAct", ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString()));
                     response.sendRedirect("index.jsp");                   
                 } else {
                     ConexionEstatica.Insertar_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
+                    session.setAttribute("prefAct", ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString()));
+                    response.sendRedirect("index.jsp");
                 }
                 ConexionEstatica.cerrarBD();
             }
@@ -149,6 +155,11 @@
             if(request.getParameter("userMail")!=null) {
                 response.sendRedirect("Vistas/entrada.jsp");
             }  
+
+            //Amigos 
+            if(request.getParameter("userSearch")!=null) {
+                response.sendRedirect("Vistas/busqueda.jsp");
+            }
             
         %>
     </body>
