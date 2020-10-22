@@ -95,11 +95,17 @@ public class ConexionEstatica {
     public static void Insertar_Usuario (String email, String password, String nombre, String apellido, int edad, String genero) throws SQLException {
         String Sentencia = "INSERT INTO usuario (email, pass, nombre, apellido, edad, genero) "
                 + "VALUES ('"+email+"', '"+password+"', '"+nombre+"', '"+apellido+"', "+edad+", '"+genero+"')";
+        Set_Rol(email, 1);
         ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
     }
     
     public static void Borrar_Usuario(String email) throws SQLException {
         String Sentencia = "DELETE FROM usuario WHERE email = '" + email + "'";
+        ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
+    }
+    
+    public static void Update_Usuario (String email, String password, String nombre, String apellido, int edad, String genero) throws SQLException {
+        String Sentencia = "UPDATE usuario SET pass = '"+password+"', nombre = '"+nombre+"', apellido = "+apellido+"', edad = "+edad+", genero = '"+genero+"' WHERE email = '"+email+"'";        
         ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
     }
     
@@ -283,14 +289,12 @@ public class ConexionEstatica {
             }
             
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
         }
         
@@ -309,14 +313,13 @@ public class ConexionEstatica {
             }
             
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
         }
         
@@ -335,14 +338,14 @@ public class ConexionEstatica {
             }
             
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
         }
         
@@ -361,14 +364,13 @@ public class ConexionEstatica {
             }
             
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
         }
         
@@ -387,14 +389,13 @@ public class ConexionEstatica {
             }
             
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
         }
         
@@ -413,14 +414,13 @@ public class ConexionEstatica {
             }
             
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
-            while(Conj_Registros.next()){
-                Usuario usu = Get_Usuario(Conj_Registros.getString("emailUsu"));
-                aux.add(usu);
+            while(Conj_Registros.next()){                
+                aux.add(Conj_Registros.getString("emailUsu"));
             }
         }
         

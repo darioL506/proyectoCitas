@@ -52,12 +52,14 @@
                             </div>                                                      
                         </form>
                     </div>                    
-                    <div class="col-m-6 col-6 row">
-                        <div class="col-m-12 col-12"><a href="Vistas/registro.jsp">¿No tienes cuenta?</a></div>                        
-                    </div>
-                    <div class="col-m-6 col-6 row">
-                        <div class="col-m-12 col-12"><a href="">¿Te has olvidado de tu contraseña?</a></div>                        
-                    </div>
+                    <ul class="col-m-12 col-12 row horizontal-menu">
+                        <div class="col-2"></div>
+                        <li class="col-m-12 col-4"><a href="Vistas/registro.jsp">¿No tienes cuenta?</a></li>                        
+                    
+                    
+                        <li class="col-m-12 col-4"><a href="">¿Te has olvidado de tu contraseña?</a></li>                        
+                        <div class="col-2"></div>
+                    </ul>
                 </div>                
             </div>
             <div class="col-m-1 col-2"></div>                                    

@@ -2,6 +2,7 @@ body
 {
     font-family: arial;
     font-size: 10;
+    background-color: #ffb3b3;
 }
 
 form {
@@ -11,6 +12,7 @@ form {
 * 
 {
     box-sizing: border-box;
+    
 }
 
 .row::after 
@@ -89,7 +91,9 @@ h2
 @media only screen and (min-width: 600px) 
 {
     ul li {text-align: center;}
-
+    
+    .hiddenMov {display: block;}
+    .hidden {display: none}
     .col-m-1 {width: 8.33%;}
     .col-m-2 {width: 16.66%;}
     .col-m-3 {width: 25%;}
@@ -106,7 +110,9 @@ h2
 
 @media only screen and (min-width: 768px) 
 {
-    ul li {text-align: left;}
+    .hiddenMov {display: none;}
+    .hidden {display: block}
+    ul li {text-align: left;}    
     .col-1 {width: 8.33%;}
     .col-2 {width: 16.66%;}
     .col-3 {width: 25%;}

@@ -21,30 +21,35 @@
         </header>
         
         <main class="row">
-            <div class="col-m-1 col-2"></div>
-            <div class="col-m-10 col-8">
+            <div class="hidden col-2"></div>
+            <div class="col-m-12 col-8">
+                <div class="row" style="text-align: center">
+                    <div class="col-m-4 col-4">Asunto</div>
+                    <div class="col-m-6 col-4">Emisor</div>
+                    <div class="col-m-2 col-4">Fecha</div>
+                </div>
                 <%
-                    ConexionEstatica.nueva();
-                    LinkedList <Mensaje> mensajes = ConexionEstatica.obtenerMensajesUsu(session.getAttribute("emailAct").toString());
-                    
-                    for(Mensaje aux: mensajes) {
-                        %>
-                        <div class="row" id="mensaje">
-                            <div class="dropdown">
-                                <div class="col-4"><a><%=aux.getAsunto()%></a></div>
-                                <div class="col-4"><%=aux.getAsunto()%></div>
-                                <div class="col-4"><%=aux.getFecha()%></div>
-                                
-                                <textarea class="col-12 dropdown-content" name="cuerpoMensaje"><%=aux.getCuerpo()%></textarea>
-                                
-                            </div>
-                        </div>
-                        <%
-                    }
-                    ConexionEstatica.cerrarBD();
+                ConexionEstatica.nueva();
+                LinkedList <Mensaje> mensajes = ConexionEstatica.obtenerMensajesUsu(session.getAttribute("emailAct").toString());
+
+                for(Mensaje aux: mensajes) {
+                %>
+                <div class="row" id="mensaje" style="text-align: center">
+                    <div class="dropdown">
+                        <div class="col-m-4 col-4"><%=aux.getAsunto()%></div>
+                        <div class="col-m-6 col-4"><%=aux.getEmisor()%></div>
+                        <div class="col-m-2 col-4"><%=aux.getFecha()%></div>
+
+                        <textarea class="col-12 dropdown-content" name="cuerpoMensaje" readonly><%=aux.getCuerpo()%></textarea>
+
+                    </div>
+                </div>
+                <%
+                }
+                ConexionEstatica.cerrarBD();
                 %>
             </div>
-            <div class="col-m-1 col-2"></div>
+            <div class="hidden col-2"></div>
         </main>
     </body>
 </html>

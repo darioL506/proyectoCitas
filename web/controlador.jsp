@@ -78,6 +78,13 @@
                 }
             }
             
+            if (request.getParameter("submEdit")!=null) {
+                ConexionEstatica.nueva();
+                ConexionEstatica.Update_Usuario(session.getAttribute("emailAct").toString(), request.getParameter("passwordRegist"), request.getParameter("nombreRegist"), request.getParameter("apellRegist"), Integer.parseInt(request.getParameter("edadRegist")), request.getParameter("generoRegist"));
+                ConexionEstatica.cerrarBD();
+                response.sendRedirect("Vistas/inicio.jsp");
+            }
+            
             //Pagina administrador
             if (request.getParameter("borrarCrud")!=null) {
                 ConexionEstatica.nueva();

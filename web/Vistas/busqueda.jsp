@@ -24,29 +24,44 @@
             
             <div class="col-m-1 col-1"></div>
             <div class="col-m-10 col-10">
-                <%  
-                ConexionEstatica.nueva();                    
-                LinkedList <Usuario> usu = ConexionEstatica.Busqueda((Preferencias) session.getAttribute("prefAct"));
-                for (Usuario aux:usu) {
-                    if(!aux.getEmail().equals(session.getAttribute("emailAct"))) {
-                    %>
-                        <div class="col-3"><%=aux.getName()%> <%=aux.getApellido()%></div>
-                        <div class="col-3"><%=aux.getEdad()%></div>
-                        <div class="col-3">
-                            <%
-                            if(aux.getGenero().equals("m")) {
-                              %>Hombre<%  
-                            } else {
-                              %>Mujer<%  
-                            }
-                            %>                        
-                        </div>
-                        <div class="col-3">Botón</div>
-                    <%
+                <div class="row">
+                    <div class="col-m-4 col-3 hidden">Nombre</div>
+                    <div class="col-m-3 col-3 hidden">Edad</div>
+                    <div class="col-m-3 col-3 hidden">Género</div>
+                    <div class="col-m-2 col-3 hidden"></div>
+                    <div class="col-m-12 hiddenMov"></div>
+                    <div class="col-12"></div>
+                    <%  
+                    ConexionEstatica.nueva();                    
+                    LinkedList <String> emails = ConexionEstatica.Busqueda((Preferencias) session.getAttribute("prefAct"));
+                    for (String aux:emails) {                        
+                        Usuario usu = ConexionEstatica.Get_Usuario(aux);
+                        if(!usu.getEmail().equals(session.getAttribute("emailAct"))) {
+                        %>                        
+                        <form name="form1" action="../controlador.jsp">
+                            <div class="col-m-4 col-3"><%=usu.getName()%> <%=usu.getApellido()%></div>
+                            <div class="col-m-3 col-3"><%=usu.getEdad()%></div>
+                            <div class="col-m-3 col-3">
+                                <%
+                                if(usu.getGenero().equals("m")) {
+                                  %>Hombre<%  
+                                } else {
+                                  %>Mujer<%  
+                                }
+                                %>                        
+                            </div>
+                            <div class="col-m-3 col-3">
+                                <button type="submit" name="sendRequest">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <%
+                        }
                     }
-                }
-                ConexionEstatica.cerrarBD();
-                %>
+                    ConexionEstatica.cerrarBD();
+                    %>
+                </div>
             </div>
             <div class="col-m-1 col-1"></div>
             
