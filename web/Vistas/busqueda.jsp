@@ -31,14 +31,22 @@
                     <div class="col-m-2 col-3 hidden"></div>
                     <div class="col-m-12 hiddenMov"></div>
                     <div class="col-12"></div>
-                    <%  
+                    <%
+                    if(session.getAttribute("error").equals("1")) {
+                        session.setAttribute("error", "0");
+                    %>
+                    <div class="col-12">La persona ya te ha enviado una petición de amistad</div>
+                    <%
+                    }                      
                     ConexionEstatica.nueva();                    
                     LinkedList <String> emails = ConexionEstatica.Busqueda((Preferencias) session.getAttribute("prefAct"));
                     for (String aux:emails) {                        
                         Usuario usu = ConexionEstatica.Get_Usuario(aux);
-                        if(!usu.getEmail().equals(session.getAttribute("emailAct"))) {
+                        if(!usu.getEmail().equals(session.getAttribute("emailAct")) && 
+                                !ConexionEstatica.Is_Amigo(session.getAttribute("emailAct").toString(), usu.getEmail())) {
                         %>                        
                         <form name="form1" action="../controlador.jsp">
+                            <input type="email" name="emailF" value="<%=usu.getEmail()%>" style="display: none">
                             <div class="col-m-4 col-3"><%=usu.getName()%> <%=usu.getApellido()%></div>
                             <div class="col-m-3 col-3"><%=usu.getEdad()%></div>
                             <div class="col-m-3 col-3">

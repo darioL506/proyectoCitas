@@ -2,11 +2,11 @@
 
 
 <div class="header">
-    <a href="#default" class="logo">CompanyLogo</a>   
-    <% if(request.getServletPath().equals("/index.jsp")){
-    %><a class="active" href="index.jsp">Home</a><%
+    <a href="${pageContext.request.contextPath}/index.jsp" class="logo">CompanyLogo</a>   
+    <% if(request.getServletPath().equals("/Vistas/inicio.jsp")){
+    %><a class="active" href="${pageContext.request.contextPath}/Vistas/inicio.jsp">Home</a><%
     } else {
-        %><a href="../index.jsp">Home</a><%   
+        %><a href="${pageContext.request.contextPath}/Vistas/inicio.jsp">Home</a><%   
     }%>
     <div class="header-right">
         <%if(session.getAttribute("emailAct")!=null) {%>

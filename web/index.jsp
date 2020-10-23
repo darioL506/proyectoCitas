@@ -4,6 +4,7 @@
     Author     : dario
 --%>
 
+<%@page import="java.util.Random"%>
 <%@page import="java.io.File"%>
 <%@page import="java.nio.file.Path"%>
 <%@page import="java.nio.file.Paths"%>
@@ -13,6 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Comun/estilos.jsp"/>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -39,7 +41,8 @@
                                 <div class="col-m-12 col-12"></div>
                                 <div class="col-m-1 col-1"></div>
                                 <div class="col-m-4 col-4">Contraseña </div>
-                                <input class="col-m-6 col-6" type="password" name="passwordLogin" required>
+                                <!-- pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" minlength="8" -->
+                                <input class="col-m-6 col-6" type="password" name="passwordLogin" required >
                                 <div class="col-m-1 col-1"></div>
                                 <div class="col-m-12 col-12"></div>
                             </div>
@@ -48,10 +51,23 @@
                                 <div class="col-m-2 col-2">
                                     <input type="submit" name="submLog" value="Aceptar"> 
                                 </div>
-                                <div class="col-m-5 col-5"></div>
-                            </div>                                                      
-                        </form>
-                    </div>                    
+                                <div class="col-m-5 col-5"></div>                                
+                            </div>
+                            <%
+                            Random rand = new Random();
+                            int a = rand.nextInt((20-1)+1)+1;
+
+                            session.setAttribute("isCaptcha", a);
+                            if(a>=10) {
+                            %>
+                            <div class="row">
+                                <div class="col-4 hidden"></div>
+                                <div class="g-recaptcha col-m-12 col-4" data-sitekey="6LdGktoZAAAAAHw4sPfKhwzINgAI7ctCVw7x2_Pm"></div>
+                                <div class="col-4 hidden"></div>
+                            </div>
+                            <%}%>
+                        </form>                        
+                    </div>                     
                     <ul class="col-m-12 col-12 row horizontal-menu">
                         <div class="col-2"></div>
                         <li class="col-m-12 col-4"><a href="Vistas/registro.jsp">¿No tienes cuenta?</a></li>                        

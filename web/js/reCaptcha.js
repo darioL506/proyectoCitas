@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-function verMensaje(elem) {
-  alert(elem.parentNode).toString();
-}
+var onloadCallback = function() {
+    alert("grecaptcha is ready!");
+};
 

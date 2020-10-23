@@ -4,6 +4,7 @@
     Author     : dario
 --%>
 
+<%@page import="Modelo.VerificarRecaptcha"%>
 <%@page import="Modelo.Mensaje"%>
 <%@page import="Auxiliar.Constantes"%>
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
@@ -33,7 +34,20 @@
                                 
                 Usuario aux = ConexionEstatica.login(email,request.getParameter("passwordLogin"));
                 
-                if(aux!=null) {                   
+                //Obtenemos el valor de g-recaptcha-response del reCaptcha
+                String gRecaptchaResponse = request.getParameter("g-recaptcha-response");     
+                
+                boolean verificado = false;
+                
+                int a = (int) session.getAttribute("isCaptcha");
+                
+                if(a>=10) {
+                    verificado = VerificarRecaptcha.verificar(gRecaptchaResponse);                    
+                } else {
+                    verificado = true;
+                }
+                
+                if(aux!=null && verificado) {                   
                     
                     session.setAttribute("emailAct", email);
                     
@@ -54,6 +68,8 @@
                         response.sendRedirect("Vistas/inicio.jsp");
                     }
                     
+                } else {
+                    response.sendRedirect("index.jsp");
                 }
                 
                 
@@ -163,9 +179,20 @@
                 response.sendRedirect("Vistas/entrada.jsp");
             }  
 
-            //Amigos 
-            if(request.getParameter("userSearch")!=null) {
-                response.sendRedirect("Vistas/busqueda.jsp");
+            //Amigos                        
+            if(request.getParameter("sendRequest")!=null) {
+                ConexionEstatica.nueva();
+                String email2 = request.getParameter("emailF");
+                
+                boolean isSend = ConexionEstatica.Is_Send(session.getAttribute("emailAct").toString(), email2);
+                
+                if(!isSend) {
+                    ConexionEstatica.Send_Request(session.getAttribute("emailAct").toString(), email2);
+                    response.sendRedirect("Vistas/busqueda.jsp");
+                }else {
+                    session.setAttribute("error", "1");
+                    response.sendRedirect("Vistas/busqueda.jsp");
+                }                
             }
             
         %>

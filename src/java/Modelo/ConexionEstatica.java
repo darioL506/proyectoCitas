@@ -427,4 +427,98 @@ public class ConexionEstatica {
         return aux;
     }
     
+    public static void Send_Request(String emailE, String emailR) throws SQLException {
+        try {
+            String sentencia = "INSERT INTO amigos VALUES ('"+emailE+"', '"+emailR+"', false)";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+        } catch (SQLException ex) {
+            
+        }
+    }
+    
+    public static boolean Is_Send(String emailE, String emailR) throws SQLException {
+        boolean isSend=false;
+        try {
+            String sentencia = "SELECT * FROM amigos WHERE emailUsu-1 = '"+emailE+"' AND emailUsu-2= '"+emailR+"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()) {
+                isSend = true;
+            }
+            
+            sentencia = "SELECT * FROM amigos WHERE emailUsu-1 = '"+emailR+"' AND emailUsu-2= '"+emailE+"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()) {
+                isSend = true;
+            }
+            
+        } catch (SQLException ex) {
+            
+        }
+        return isSend;
+    }
+    
+    public static boolean Is_Amigo (String emailE, String emailR) throws SQLException {
+        boolean isAmigo=false;
+        try {
+            String sentencia = "SELECT * FROM amigos WHERE emailUsu-1 = '"+emailE+"' AND emailUsu-2= '"+emailR+"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()) {
+                isAmigo = Conj_Registros.getBoolean("acepta");
+            }
+            
+            sentencia = "SELECT * FROM amigos WHERE emailUsu-1 = '"+emailR+"' AND emailUsu-2= '"+emailE+"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()) {
+                isAmigo = Conj_Registros.getBoolean("acepta");
+            }
+            
+        } catch (SQLException ex) {
+            
+        }
+        return isAmigo;
+    }
+    
+    public static LinkedList Get_Amigos (String email) throws SQLException {
+        LinkedList amigosBD = new LinkedList<>();
+        try {
+            String sentencia = "SELECT * FROM amigos WHERE emailUsu-2 = '"+email+"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()) {
+                amigosBD.add(Conj_Registros.getString("emailUsu-1"));
+            }
+            sentencia = "SELECT * FROM amigos WHERE emailUsu-1 = '"+email+"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()) {
+                amigosBD.add(Conj_Registros.getString("emailUsu-2s"));
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return amigosBD;
+    }
+    
+    public static boolean Was_Send (String emailR, String emailE) throws SQLException {
+        boolean correcto = false;
+        try {
+            String sentencia = "SELECT * FROM amigos WHERE emailUsu-1 = '"+emailE+"' AND emailUsu2 ='"+emailR+"'";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while(Conj_Registros.next()) {
+                correcto = true;
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return correcto;
+    }
+    
+    public static void Set_Amigo (String emailR, String emailE) throws SQLException {
+        
+        try {
+            String sentencia = "UPDATE amigos SET acepta = "+ true +" WHERE emailUsu-1 ='"+emailE+"' AND emailUsu-2 ='"+emailR+"'";
+            ConexionEstatica.Sentencia_SQL.executeUpdate(sentencia);            
+        } catch (SQLException ex) {
+            
+        }
+    }
+    
 }
