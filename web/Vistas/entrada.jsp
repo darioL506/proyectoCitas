@@ -50,6 +50,9 @@
                 %>
             </div>
             <div class="hidden col-2"></div>
+            <footer>
+                <jsp:include page="../Comun/footer.jsp"/>
+            </footer>
         </main>
     </body>
 </html>

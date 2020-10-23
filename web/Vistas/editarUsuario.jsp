@@ -74,6 +74,9 @@
                 </div>                
             </div>
             <div class="col-m-1 col-2"></div>  
+            <footer>
+                <jsp:include page="../Comun/footer.jsp"/>
+            </footer>
         </main>
     </body>
 </html>

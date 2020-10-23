@@ -20,10 +20,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
     <body>
         <%
             //Página de login
@@ -33,6 +29,16 @@
                 String email = request.getParameter("emailLogin");
                                 
                 Usuario aux = ConexionEstatica.login(email,request.getParameter("passwordLogin"));
+                
+                boolean relogin = false;
+                
+                if(session.getAttribute("emailAct")==null){
+                    session.setAttribute("emailAct", " ");
+                }
+                
+                if(email.equals(session.getAttribute("emailAct").toString())) {
+                    relogin = true;
+                }
                 
                 //Obtenemos el valor de g-recaptcha-response del reCaptcha
                 String gRecaptchaResponse = request.getParameter("g-recaptcha-response");     
@@ -47,27 +53,36 @@
                     verificado = true;
                 }
                 
-                if(aux!=null && verificado) {                   
-                    
+                if(aux!=null && verificado) {
                     session.setAttribute("emailAct", email);
                     
                     session.setAttribute("nombreAct", aux.getName()+" "+aux.getApellido());
                     
                     
+                    Integer contador = (Integer) application.getAttribute("numerodeUsuarios");
+                    if (contador == null || contador == 0) {
+                        contador = 1;
+                    } else {
+                        contador = contador + 1;
+                    }
+                    if(relogin) {
+                        contador = contador-1;
+                    }
+                    application.setAttribute("numerodeUsuarios", contador);
+
                     Boolean hasAdmin = ConexionEstatica.getRol(request.getParameter("emailLogin"),0);
                                         
                     if (ConexionEstatica.Get_Preferencias(email)==null) {
                         response.sendRedirect("Vistas/preferencias.jsp");
-                    }                                        
-                    
-                    session.setAttribute("prefAct", ConexionEstatica.Get_Preferencias(email));
-                    
-                    if(hasAdmin) {
+                    } else if(hasAdmin) {
                         response.sendRedirect("Vistas/admin.jsp");
+                        session.setAttribute("prefAct", ConexionEstatica.Get_Preferencias(email));
                     } else {                    
                         response.sendRedirect("Vistas/inicio.jsp");
+                        session.setAttribute("prefAct", ConexionEstatica.Get_Preferencias(email));
                     }
-                    
+                                                           
+   
                 } else {
                     response.sendRedirect("index.jsp");
                 }
@@ -161,11 +176,11 @@
                 if(ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString())!=null ) {
                     ConexionEstatica.Update_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
                     session.setAttribute("prefAct", ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString()));
-                    response.sendRedirect("index.jsp");                   
+                    response.sendRedirect("Vistas/inicio.jsp");                   
                 } else {
                     ConexionEstatica.Insertar_Preferencias(session.getAttribute("emailAct").toString(), rel, request.getParameter("depPref"), request.getParameter("artPref"), request.getParameter("politPref"), hijos, request.getParameter("interesPref"));
                     session.setAttribute("prefAct", ConexionEstatica.Get_Preferencias(session.getAttribute("emailAct").toString()));
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("Vistas/inicio.jsp");
                 }
                 ConexionEstatica.cerrarBD();
             }

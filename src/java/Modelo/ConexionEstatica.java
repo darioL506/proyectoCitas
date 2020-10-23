@@ -94,9 +94,9 @@ public class ConexionEstatica {
     
     public static void Insertar_Usuario (String email, String password, String nombre, String apellido, int edad, String genero) throws SQLException {
         String Sentencia = "INSERT INTO usuario (email, pass, nombre, apellido, edad, genero) "
-                + "VALUES ('"+email+"', '"+password+"', '"+nombre+"', '"+apellido+"', "+edad+", '"+genero+"')";
-        Set_Rol(email, 1);
+                + "VALUES ('"+email+"', '"+password+"', '"+nombre+"', '"+apellido+"', "+edad+", '"+genero+"')";        
         ConexionEstatica.Sentencia_SQL.executeUpdate(Sentencia);
+        Set_Rol(email, 1);
     }
     
     public static void Borrar_Usuario(String email) throws SQLException {

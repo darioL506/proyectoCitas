@@ -84,6 +84,8 @@
             </div>
             <div class="col-m-1 col-1"></div> 
         </main>
-        <footer></footer>
+        <footer>
+            <jsp:include page="../Comun/footer.jsp"/>    
+        </footer>
     </body>
 </html>

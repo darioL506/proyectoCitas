@@ -83,7 +83,7 @@
         </main>
         
         <footer>
-            
+            <jsp:include page="Comun/footer.jsp"/>    
         </footer>
     </body>
 </html>
