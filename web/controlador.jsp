@@ -195,6 +195,22 @@
                 }                
             }
             
+            if(request.getParameter("aceptarF")!=null) {
+                ConexionEstatica.nueva();
+                String emailF = request.getParameter("emailF");
+                ConexionEstatica.Set_Amigo(session.getAttribute("emailAct").toString(), emailF);
+                ConexionEstatica.cerrarBD();
+                response.sendRedirect("Vistas/amigos.jsp");
+            }
+            
+            if(request.getParameter("rechazarF")!=null) {
+                ConexionEstatica.nueva();
+                String emailF = request.getParameter("emailF");
+                ConexionEstatica.Delete_Amigo(session.getAttribute("emailAct").toString(), emailF);
+                ConexionEstatica.cerrarBD();
+                response.sendRedirect("Vistas/amigos.jsp");
+            }
+            
         %>
     </body>
 </html>

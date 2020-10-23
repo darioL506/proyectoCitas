@@ -24,22 +24,16 @@
             
             <div class="col-m-1 col-1"></div>
             <div class="col-m-10 col-10">
-                <div class="row">
+                <div class="row" style="text-align: center">
                     <div class="col-m-4 col-3 hidden">Nombre</div>
                     <div class="col-m-3 col-3 hidden">Edad</div>
                     <div class="col-m-3 col-3 hidden">Género</div>
                     <div class="col-m-2 col-3 hidden"></div>
                     <div class="col-m-12 hiddenMov"></div>
                     <div class="col-12"></div>
-                    <%
-                    if(session.getAttribute("error").equals("1")) {
-                        session.setAttribute("error", "0");
-                    %>
-                    <div class="col-12">La persona ya te ha enviado una petición de amistad</div>
-                    <%
-                    }                      
+                    <%                                        
                     ConexionEstatica.nueva();                    
-                    LinkedList <String> emails = ConexionEstatica.Busqueda((Preferencias) session.getAttribute("prefAct"));
+                    LinkedList <String> emails = ConexionEstatica.Busqueda((Preferencias) session.getAttribute("prefAct"));                    
                     for (String aux:emails) {                        
                         Usuario usu = ConexionEstatica.Get_Usuario(aux);
                         if(!usu.getEmail().equals(session.getAttribute("emailAct")) && 

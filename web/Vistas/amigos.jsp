@@ -24,7 +24,7 @@
             
             <div class="col-m-1 col-1"></div>
             <div class="col-m-10 col-10">
-                <div class="row">
+                <div class="row" style="text-align: center">
                     <div class="col-m-4 col-3 hidden">Nombre</div>
                     <div class="col-m-3 col-3 hidden">Edad</div>
                     <div class="col-m-3 col-3 hidden">Género</div>
@@ -41,10 +41,7 @@
                         <input type="email" name="emailF" value="<%=usu.getEmail()%>" style="display: none">
                         <div class="col-m-4 col-3"><%=usu.getName()%> <%=usu.getApellido()%></div>
                         <div class="col-m-3 col-3"><%=usu.getEdad()%></div>
-                        <div class="col-m-3 col-3">
-                        <div class="col-m-1 col-1">
-                            <button type="submit" name="rechazarF"><i class="far fa-heart"></i></button>
-                        </div> 
+                        <div class="col-m-3 col-3">                        
                         <%
                         if(usu.getGenero().equals("m")) {
                           %>Hombre<%  
@@ -52,15 +49,17 @@
                           %>Mujer<%  
                         }%>
                         </div>
+                        <div class="col-m-1 col-1">
+                            <button type="submit" name="rechazarF"><i class="fas fa-trash"></i></i></button>
+                        </div> 
                         <%
                         if(!ConexionEstatica.Is_Amigo(usu.getEmail(), session.getAttribute("emailAct").toString()) 
-                                && ConexionEstatica.Was_Send(usu.getEmail(), session.getAttribute("emailAct").toString())) {
+                                && !ConexionEstatica.Envia_Peticion(usu.getEmail(), session.getAttribute("emailAct").toString())) {
                         %>
                         <div class="col-m-1 col-1">
                             <button type="submit" name="aceptarF"><i class="far fa-heart"></i></button>
                         </div>
-                        <div class="col-m-1 col-1"></div>
-                                               
+                        <div class="col-m-1 col-1"></div>                                               
                         <%
                         } else {
                         %>                        

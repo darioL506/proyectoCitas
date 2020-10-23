@@ -85,7 +85,7 @@
                             <div class="col-m-12 col-12"><a href="editarUsuario.jsp">Editar perfil</a></div>
                             <div class="col-m-12 col-12"><a href="entrada.jsp">Ver mensajes</a></div>
                             <div class="col-m-12 col-12"><a href="mensaje.jsp">Nuevo mensaje</a></div>
-                            <div class="col-m-12 col-12"><a href="#">Ver amigos</a></div>
+                            <div class="col-m-12 col-12"><a href="amigos.jsp">Ver amigos</a></div>
                             <div class="col-m-12 col-12"><a href="busqueda.jsp">Busqueda</a></div>
                         </div>                        
                     </div>

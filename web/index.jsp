@@ -33,18 +33,19 @@
                                 <div class="col-m-12 col-12"></div>
                                 <div class="col-m-1 col-1"></div>
                                 <div class="col-m-3 col-3">Usuario:</div>
-                                <input class="col-m-7 col-7" type="email" name="emailLogin" placeholder="email@gmail.com" required>         
+                                <input class="col-m-7 col-7" id="email" type="email" name="emailLogin" placeholder="email@gmail.com" required>         
                                 <div class ="col-m-1 col-1"></div>
                                 <div class="col-m-12 col-12"></div>
+                                <span class="errorMail" aria-live="polite"></span>
                             </div>
                             <div class="row">
                                 <div class="col-m-12 col-12"></div>
                                 <div class="col-m-1 col-1"></div>
-                                <div class="col-m-4 col-4">Contraseña </div>
-                                <!-- pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" minlength="8" -->
-                                <input class="col-m-6 col-6" type="password" name="passwordLogin" required >
+                                <div class="col-m-4 col-4" id="paswword">Contraseña </div>
+                                <input class="col-m-6 col-6" type="password" name="passwordLogin" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" minlength="8" required >
                                 <div class="col-m-1 col-1"></div>
                                 <div class="col-m-12 col-12"></div>
+                                <span class="errorPass" aria-live="polite"></span>
                             </div>
                             <div class="row">
                                 <div class="col-m-5 col-5"></div>
